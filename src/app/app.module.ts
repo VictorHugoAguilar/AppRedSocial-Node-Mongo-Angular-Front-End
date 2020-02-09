@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { routingModule, appRoutingProviders } from './app.routing'
+import { RoutingModule, appRoutingProviders } from './app.routing';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Importamos los componentes externos
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,7 +23,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    routingModule
+    RoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     appRoutingProviders
