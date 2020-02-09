@@ -1,8 +1,15 @@
 <div class="col-12">
-
     <h1>{{title}}</h1>
     <hr>
     <div class="d-flex justify-content-center row mt-5 ">
+        <div class="alert alert-success" *ngIf="status === 'success'">
+            <fa-icon [icon]="faCheckCircle"></fa-icon>
+            Registro completado correctamente, <a [routerLink]="['login']"> Logearse aqui ...</a>
+        </div>
+        <div class="alert alert-danger" *ngIf="status === 'error'">
+            <fa-icon [icon]="faExclamationCircle"></fa-icon>
+            Registro no se ha podido completar correctamente, el nick o el correo ya está registrado. Inténtalo con otro.
+        </div>
         <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-8 bg-light p-4">
 
             <div class="form-group">
@@ -10,9 +17,9 @@
                 <input type="text" id="name" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required />
                 <div>
                     <small class="alert alert-danger" *ngIf="!name.valid && name.touched">
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon>
-                El nombre es obligatorio
-            </small>
+                        <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                        El nombre es obligatorio
+                    </small>
                 </div>
             </div>
 
@@ -21,9 +28,9 @@
                 <input type="text" id="surname" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required />
                 <div>
                     <small class="alert alert-danger" *ngIf="!surname.valid && surname.touched">
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon>
-                Los apellidos son obligatorios es obligatorio
-            </small>
+                        <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                        Los apellidos son obligatorios es obligatorio
+                    </small>
                 </div>
             </div>
 
@@ -32,9 +39,9 @@
                 <input type="text" id="nick" name="nick" #nick="ngModel" [(ngModel)]="user.nick" class="form-control" required />
                 <div>
                     <small class="alert alert-danger" *ngIf="!nick.valid && nick.touched">
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon>
-                El apódo es obligatorio
-            </small>
+                        <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                        El apódo es obligatorio
+                    </small>
                 </div>
             </div>
 
@@ -43,20 +50,20 @@
                 <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}" />
                 <div>
                     <small class="alert alert-danger" *ngIf="!email.valid && email.touched">
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon>
-                El email es obligatorio, y tiene que tener el formato de mail
-            </small>
+                        <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                        El email es obligatorio, y tiene que tener el formato de mail
+                    </small>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="text" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required />
+                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required />
                 <div>
                     <small class="alert alert-danger" *ngIf="!password.valid && password.touched">
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon>
-                La contraseña es obligatoria
-            </small>
+                        <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                        La contraseña es obligatoria
+                    </small>
                 </div>
             </div>
 
