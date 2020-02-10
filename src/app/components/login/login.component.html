@@ -1,1 +1,56 @@
-<h1>{{title}}</h1>
+<div class="col-12">
+    <h1 class="ml-5">{{title}}</h1>
+    <hr>
+    <div class="row d-flex justify-content-center">
+        <div class="col-5">
+            <div class="alert alert-success" *ngIf="status === 'success'">
+                <small>
+                    <fa-icon [icon]="faCheckCircle"></fa-icon>
+                    Te has identificado correctamente, bienvenido !!
+                </small>
+            </div>
+            <div class="alert alert-danger" *ngIf="status === 'error' && email.touched ">
+                <small>
+                    <fa-icon [icon]="faExclamationCircle"></fa-icon>
+                    No te has identificado correctamente, vuelve a intertarlo.
+                </small>
+            </div>
+            <form class="form-signin bg-light p-4" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="text-center mb-3">
+                    <fa-icon id="iconMail" [icon]="faMailBulk"> </fa-icon>
+                </div>
+
+                <h1 class="h3 mb-3 font-weight-normal">Identifiquese aquí</h1>
+
+                <div class="form-group">
+                    <label for="inputEmail">Dirección de mail</label>
+                    <input type="email" id="inputEmail" class="form-control" name="email" #email="ngModel" [(ngModel)]=user.email placeholder="Email aquí... " required autofocus>
+                    <div>
+                        <small class="alert alert-danger" *ngIf="!email.valid && email.touched">
+                            <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                            El mail es obligatorio
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword " class="form-control " placeholder="Password aquí..." [(ngModel)]=user.password name="password" #password="ngModel" required>
+                    <div>
+                        <small class="alert alert-danger" *ngIf="!password.valid && password.touched">
+                            <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+                            El password es obligatorio
+                        </small>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Recordarme aquí
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block mt-2" type="submit " [disabled]="!loginForm.form.valid">Entrar</button>
+                <p class="text-center mt-3 text-muted ">&copy; 2017-2018</p>
+            </form>
+        </div>
+    </div>
+</div>
