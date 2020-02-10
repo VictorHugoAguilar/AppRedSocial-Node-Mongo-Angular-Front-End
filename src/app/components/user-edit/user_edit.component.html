@@ -1,0 +1,53 @@
+<div class="col-12">
+    <h1 class="ml-5 mt-4"> {{title}}</h1>
+    <hr>
+
+    <form #userEditForm="ngForm" (ngSubmit)="onSubmit()" class="row col-12">
+        <div class="col-6">
+
+            <div class="alert alert-success" *ngIf="status === 'success'">
+                <small>
+                    <fa-icon [icon]="faCheckCircle"></fa-icon>
+                    Se han actualizado correctamente !!
+                </small>
+            </div>
+            <div class="alert alert-danger" *ngIf="status === 'error'">
+                <small>
+                    <fa-icon [icon]="faExclamationCircle"></fa-icon>
+                    No se ha podido actualizar tus datos, vuelve a intertarlo.
+                </small>
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="user.name" required>
+                <span class="aler alert-danger" *ngIf="!name.valid && name.touched"> El nombre es obligatorio</span>
+            </div>
+
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input class="form-control" type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" required>
+                <span class="aler alert-danger" *ngIf="!surname.valid && surname.touched"> Los apellidos son
+                    obligatorios</span>
+            </div>
+
+            <div class="form-group">
+                <label>Nick</label>
+                <input class="form-control" type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" required>
+                <span class="aler alert-danger" *ngIf="!nick.valid && nick.touched"> El nick es obligatorio</span>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required>
+                <span class="aler alert-danger" *ngIf="!email.valid && email.touched"> El email es obligatorio</span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value={{title}} class="btn btn-warning btn-block mt-3" [disabled]="!userEditForm.form.valid">
+            </div>
+        </div>
+        <div class="col-6">
+
+        </div>
+    </form>
+</div>

@@ -2,15 +2,15 @@
     <h1 class="ml-5">{{title}}</h1>
     <hr>
     <div class="d-flex justify-content-center row mt-5 ">
-        <div class="alert alert-success" *ngIf="status === 'success'">
-            <fa-icon [icon]="faCheckCircle"></fa-icon>
-            Registro completado correctamente, <a [routerLink]="['login']"> Logearse aqui ...</a>
-        </div>
-        <div class="alert alert-danger" *ngIf="status === 'error'">
-            <fa-icon [icon]="faExclamationCircle"></fa-icon>
-            Registro no se ha podido completar correctamente, el nick o el correo ya está registrado. Inténtalo con otro.
-        </div>
         <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-8 bg-light p-4">
+            <div class="alert alert-success" *ngIf="status === 'success'">
+                <fa-icon [icon]="faCheckCircle"></fa-icon>
+                Registro completado correctamente, <a [routerLink]="['login']"> Logearse aqui ...</a>
+            </div>
+            <div class="alert alert-danger" *ngIf="status === 'error'">
+                <fa-icon [icon]="faExclamationCircle"></fa-icon>
+                Registro no se ha podido completar correctamente, el nick o el correo ya está registrado. Inténtalo con otro.
+            </div>
 
             <div class="form-group">
                 <label for="name">Nombre</label>
