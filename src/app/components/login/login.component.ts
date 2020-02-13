@@ -56,15 +56,14 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('Componente login cargado');
+        console.log('Login Component');
     }
 
     onSubmit() {
-        console.log('submite');
         this._userService.signup(this.user).subscribe(
             response => {
                 this.identity = response.user;
-                console.log(this.identity);
+                // console.log(this.identity);
                 if (!this.identity || !this.identity._id) {
                     this.status = 'error';
                 } else {
@@ -77,7 +76,7 @@ export class LoginComponent implements OnInit {
             },
             error => {
                 const errorMensaje = <any>error;
-                console.log(errorMensaje);
+                console.error(errorMensaje);
                 if (errorMensaje) {
                     this.status = 'error';
                 }
@@ -89,7 +88,7 @@ export class LoginComponent implements OnInit {
         this._userService.signup(this.user, 'true').subscribe(
             response => {
                 this.token = response.token;
-                console.log(this.token);
+                // console.log(this.token);
                 if (this.token.length <= 0) {
                     this.status = 'error';
                 } else {
@@ -101,7 +100,7 @@ export class LoginComponent implements OnInit {
             },
             error => {
                 const errorMensaje = <any>error;
-                console.log(errorMensaje);
+                console.error(errorMensaje);
                 if (errorMensaje) {
                     this.status = 'error';
                 }

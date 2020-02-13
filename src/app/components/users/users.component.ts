@@ -89,7 +89,7 @@ export class UsersComponent implements OnInit {
             },
             error => {
                 const errorMessage = <any>error;
-                console.log(errorMessage);
+                console.error(errorMessage);
                 if (errorMessage != null) {
                     this.status = 'error';
                 }

@@ -45,7 +45,7 @@ export class UserService {
 
     getToken() {
         const token = localStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         if (token !== 'undefined') {
             this.token = token;
         } else {
@@ -69,7 +69,7 @@ export class UserService {
         console.log('llamando a getCounter user.service');
         const headers = new HttpHeaders().set('Content-Type', 'application/json')
             .set('Authorization', this.getToken());
-        console.log('userid', userId);
+        // console.log('userid', userId);
         if (userId !== null) {
             return this._http.get(this.url + 'counter/' + userId, { headers });
         }
