@@ -36,26 +36,28 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right my-5 my-lg-0" *ngIf="identity ">
-            <li class="avatar ">
+            <li>
                 <!-- Cargar imagen del usuario -->
+                <img id="avatar" class="mr-4 mb-1" alt="identity.name" src="{{ this.url + '/getImage/' + identity.image  }}" *ngIf="identity && identity.image" />
             </li>
-            <li id="desplegableUserPrincipal" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="# ">
+            <div class="dropdown boton-usuario">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ identity.name }}
-                </a>
-                <div id="desplegableUser" class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">
-                        <fa-icon [icon]="faUser"></fa-icon> Mi Perfil
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item " href="# ">
+                        <fa-icon [icon]="faUser "></fa-icon> Mi Perfil
                     </a>
-                    <a class="dropdown-item" [routerLink]="['/mis-datos']" routerLinkActive="active">
-                        <fa-icon [icon]="faCog"></fa-icon> Mis Datos
+                    <a class="dropdown-item " [routerLink]="[ '/mis-datos'] " routerLinkActive="active ">
+                        <fa-icon [icon]="faCog "></fa-icon> Mis Datos
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item pointer" (click)="logout()">
-                        Cerrar sección <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                    <div class="dropdown-divider "></div>
+                    <a class="dropdown-item pointer " (click)="logout() ">
+                        Cerrar sección <fa-icon [icon]="faSignOutAlt "></fa-icon>
                     </a>
                 </div>
-            </li>
+            </div>
+
         </ul>
 
     </div>

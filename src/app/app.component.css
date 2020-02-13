@@ -7,3 +7,18 @@
 .pointer {
     cursor: pointer;
 }
+
+#avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 9px;
+    margin-right: 2px;
+}
+
+.boton-usuario {
+    margin-right: 100px;
+    display: flex;
+    width: 100px;
+}

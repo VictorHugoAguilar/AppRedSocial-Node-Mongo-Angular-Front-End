@@ -6,6 +6,7 @@ import { UserService } from './services/user.service';
 
 // Importamos los iconos desde fortawesome
 import { faHome, faList, faUsers, faSignInAlt, faSignOutAlt, faEdit, faCaretDown, faUser, faCog } from '@fortawesome/free-solid-svg-icons';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ import { faHome, faList, faUsers, faSignInAlt, faSignOutAlt, faEdit, faCaretDown
 })
 export class AppComponent implements OnInit, DoCheck {
   public titulo: string;
+  public url: string;
+  
   public faHome = faHome;
   public faList = faList;
   public faUsers = faUsers;
@@ -34,6 +37,7 @@ export class AppComponent implements OnInit, DoCheck {
     private _router: Router
   ) {
     this.titulo = 'Red Social Angular';
+    this.url = environment.url;
   }
 
   ngOnInit(): void {
