@@ -13,9 +13,30 @@
                         <img class="card-img-top" src="{{ url + 'getImage/' + user.image  }}" alt="Card image cap" *ngIf="user.image">
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title text-warning">{{user.name + ' ' + user.surname }}</h5>
+                        <h5 class="card-title text-warning">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                            {{user.name + ' ' + user.surname }}
+                        </h5>
                         <p class="card-text"> {{ user.nick}} </p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                        <!-- Seguir dejar de seguir-->
+                        <p class="card-text text-center" *ngIf="user._id != identity._id">
+                            <button class="btn btn-success btn-block" *ngIf="follows.indexOf(user._id) < 0" (click)=followUser(user._id)>
+                                <fa-icon [icon]="faPlusCircle"></fa-icon>
+                                Seguir
+                            </button>
+                            <button class="btn btn-primary btn-block" *ngIf="follows.indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id === followUserOver">
+                                <span *ngIf="user._id === followUserOver; else following">
+                                    <fa-icon [icon]="faTimesCircle"></fa-icon>
+                                    Dejar de Seguir
+                                </span>
+
+                                <ng-template #following>
+                                    <fa-icon [icon]="faCheckCircle"></fa-icon>
+                                    Siguiendo
+                                </ng-template>
+                            </button>
+                        </p>
                     </div>
                 </div>
             </div>
