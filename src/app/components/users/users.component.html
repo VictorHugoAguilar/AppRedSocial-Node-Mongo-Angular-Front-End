@@ -1,0 +1,39 @@
+<div class="col-lg-12">
+
+    <h1 class="mt-5">{{title}}</h1>
+    <hr>
+
+    <div class="people">
+        <!-- LISTADO -->
+        <div class="card-columns">
+            <div *ngFor="let user of users" class="item-user">
+                <div class="card">
+                    <a href="#">
+                        <img class="card-img-top" src="../../../assets/img/notImage.png" alt="Card image cap" *ngIf="!user.image">
+                        <img class="card-img-top" src="{{ url + 'getImage/' + user.image  }}" alt="Card image cap" *ngIf="user.image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">{{user.name + ' ' + user.surname }}</h5>
+                        <p class="card-text"> {{ user.nick}} </p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINACION -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" *ngIf="page > 1">
+                    <a class="page-link" [routerLink]="['/gente', backPage]" tabindex="-1">Anterior</a>
+                </li>
+                <li class="page-item" *ngIf="pages != page">
+                    <a class="page-link" [routerLink]="['/gente', nextPage]">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+</div>
