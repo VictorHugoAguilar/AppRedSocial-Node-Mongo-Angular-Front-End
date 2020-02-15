@@ -1,0 +1,20 @@
+#desplegableUserPrincipal {
+    margin-right: 90px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.boton-usuario {
+    margin-top: 5px;
+    margin-right: 10px;
+}

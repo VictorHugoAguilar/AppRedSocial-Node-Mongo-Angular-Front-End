@@ -15,17 +15,22 @@ import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user_edit.component';
 import { UsersComponent } from './components/users/users.component';
 import { SideBarComponent } from './components/sidebar/sidebar.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
+import { NavBarComponent } from './components/navbar/navbar.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavBarComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
     UserEditComponent,
-    UsersComponent, 
-    SideBarComponent
+    UsersComponent,
+    SideBarComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,

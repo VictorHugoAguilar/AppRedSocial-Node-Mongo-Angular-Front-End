@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user_edit.component';
 import { UsersComponent } from './components/users/users.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'mis-datos', component: UserEditComponent},
     { path: 'gente', component: UsersComponent },
     { path: 'gente/:page', component: UsersComponent },
+    { path: 'timeline', component: TimelineComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

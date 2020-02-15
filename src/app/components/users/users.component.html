@@ -1,30 +1,29 @@
-<div class="col-12">
-    <div class="row">
-        <div class="col-8">
-            <h1 class="mt-3">{{title}}</h1>
-            <hr>
-            <!-- LISTADO -->
-            <div class="card-columns">
-                <div *ngFor="let user of users" class="item-user">
-                    <div class="card">
-                        <a href="#">
-                            <figure> <img class="img-fluid " src="../../../assets/img/notImage.png" alt="user.name" *ngIf="!user.image"></figure>
-                            <figure><img class="img-fluid" src="{{ url + 'getImage/' + user.image  }}" alt="user.name" *ngIf="user.image"></figure>
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title text-warning">
-                                <fa-icon [icon]="faUser"></fa-icon>
-                                {{ user.nick}}
-                            </h5>
-                            <p class="card-text"> {{user.name + ' ' + user.surname }}</p>
+<div class="row mt-3">
+    <div class="col-8">
+        <h1>{{title}}</h1>
+        <hr>
+        <!-- LISTADO -->
+        <div class="card-columns">
+            <div *ngFor="let user of users" class="item-user">
+                <div class="card">
+                    <a href="#">
+                        <figure> <img class="img-fluid " src="../../../assets/img/notImage.png" alt="user.name" *ngIf="!user.image"></figure>
+                        <figure><img class="img-fluid" src="{{ url + 'getImage/' + user.image  }}" alt="user.name" *ngIf="user.image"></figure>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                            {{ user.nick}}
+                        </h5>
+                        <p class="card-text"> {{user.name + ' ' + user.surname }}</p>
 
-                            <!-- Seguir dejar de seguir-->
-                            <p class="card-text text-center" *ngIf="user._id != identity._id">
-                                <button class="btn btn-success btn-block" *ngIf="follows.indexOf(user._id) < 0" (click)=followUser(user._id)>
+                        <!-- Seguir dejar de seguir-->
+                        <p class="card-text text-center" *ngIf="user._id != identity._id">
+                            <button class="btn btn-success btn-block" *ngIf="follows.indexOf(user._id) < 0" (click)=followUser(user._id)>
                                 <fa-icon [icon]="faPlusCircle"></fa-icon>
                                 Seguir
                             </button>
-                                <button class="btn btn-primary btn-block" *ngIf="follows.indexOf(user._id) >= 0" (click)=unFollowUser(user._id) (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id === followUserOver">
+                            <button class="btn btn-primary btn-block" *ngIf="follows.indexOf(user._id) >= 0" (click)=unFollowUser(user._id) (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id === followUserOver">
                                 <span *ngIf="user._id === followUserOver; else following">
                                     <fa-icon [icon]="faTimesCircle"></fa-icon>
                                     Dejar de Seguir
@@ -35,30 +34,32 @@
                                     Siguiendo
                                 </ng-template>
                             </button>
-                            </p>
-                        </div>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- PAGINACION -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" *ngIf="page > 1">
+                            <a class="page-link" [routerLink]="['/gente', backPage]" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item" *ngIf="pages != page">
+                            <a class="page-link" [routerLink]="['/gente', nextPage]">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
 
-        <!-- SideBar -->
-        <div class="col-4 mt-3">
-            <sidebar></sidebar>
+            </div>
         </div>
-
     </div>
 
-    <!-- PAGINACION -->
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item" *ngIf="page > 1">
-                <a class="page-link" [routerLink]="['/gente', backPage]" tabindex="-1">Anterior</a>
-            </li>
-            <li class="page-item" *ngIf="pages != page">
-                <a class="page-link" [routerLink]="['/gente', nextPage]">Siguiente</a>
-            </li>
-        </ul>
-    </nav>
+    <!-- SideBar -->
+    <div class="col-4">
+        <sidebar></sidebar>
+    </div>
 
 </div>
