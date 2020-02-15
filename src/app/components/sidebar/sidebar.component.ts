@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 
 // Importamos los servicios
 import { UserService } from '../../services/user.service';
+import { PublicationService } from '../../services/publication.service';
 
 // Importamos el modelo de publicaciones
 import { Publication } from '../../models/publication.model';
@@ -14,7 +15,7 @@ import { environment } from '../../../environments/environment';
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
-    providers: [UserService]
+    providers: [UserService, PublicationService]
 })
 export class SideBarComponent implements OnInit {
 
@@ -26,7 +27,8 @@ export class SideBarComponent implements OnInit {
     public status;
 
     constructor(
-        private _userService: UserService
+        private _userService: UserService,
+        private _publicationService: PublicationService
     ) {
         this.url = environment.url;
         this.identity = this._userService.getIdentity();
@@ -39,8 +41,23 @@ export class SideBarComponent implements OnInit {
         console.log('*** desde el componente sidebar ****');
     }
 
-    onSubmit(){
+    onSubmit(form) {
         console.log(this.publication);
+        this._publicationService.addPublication(this.token, this.publication).subscribe(
+            response => {
+                if (response.publication) {
+                    this.status = 'success';
+                    form.reset();
+                }
+            },
+            error => {
+                const errorMessage = <any>error;
+                console.error(errorMessage);
+                if (errorMessage != null) {
+                    this.status = 'error';
+                }
+            }
+        );
     }
 
 }

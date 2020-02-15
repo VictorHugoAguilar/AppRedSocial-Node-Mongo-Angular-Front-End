@@ -51,7 +51,11 @@
 <!-- Formulario de publicaciones -->
 <div class="row sidebar-32 float-left mt-4 card p-2">
     <h3>Crear Publicación</h3>
-    <form #newPubForm="ngForm" (ngSubmit)="onSubmit()" class="col-12">
+    <div>
+        <div class="alert alert-success" *ngIf="status === 'success'">El mensaje se ha publicado correctamente</div>
+        <div class="alert alert-danger" *ngIf="status === 'error'">El mensaje no se ha publicado correctamente</div>
+    </div>
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)" class="col-12">
         <div class="form-group">
             <label>¿Qué estas pensando hoy?</label>
             <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required>
