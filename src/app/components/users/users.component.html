@@ -25,7 +25,7 @@
                                 <fa-icon [icon]="faPlusCircle"></fa-icon>
                                 Seguir
                             </button>
-                            <button class="btn btn-primary btn-block" *ngIf="follows.indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id === followUserOver">
+                            <button class="btn btn-primary btn-block" *ngIf="follows.indexOf(user._id) >= 0" (click)=unFollowUser(user._id) (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id === followUserOver">
                                 <span *ngIf="user._id === followUserOver; else following">
                                     <fa-icon [icon]="faTimesCircle"></fa-icon>
                                     Dejar de Seguir

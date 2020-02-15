@@ -14,10 +14,6 @@ import { environment } from '../../../environments/environment';
 import { faPlusCircle, faTimesCircle, faUser, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { Follow } from '../../models/follow.model';
 
-
-
-
-
 @Component({
     // tslint:disable-next-line: component-selector
     selector: 'users',
@@ -91,8 +87,8 @@ export class UsersComponent implements OnInit {
     getUsers(page) {
         this._userService.getUsers(page).subscribe(
             response => {
-                console.log(response);
-                console.log('****** USER FOLLOWIN ******', response.usersFollowing);
+                // console.log(response);
+                // console.log('****** USER FOLLOWIN ******', response.usersFollowing);
                 if (!response.users) {
                     this.status = 'error';
                 } else {
@@ -118,7 +114,7 @@ export class UsersComponent implements OnInit {
 
     mouseEnter(userId: string) {
         this.followUserOver = userId;
-        console.log('****** USER_ID *******', userId);
+        // console.log('****** USER_ID *******', userId);
     }
 
     mouseLeave(userId: string) {
@@ -134,6 +130,25 @@ export class UsersComponent implements OnInit {
                 } else {
                     this.status = 'succes';
                     this.follows.push(followed);
+                }
+                this.actualPage();
+            },
+            error => {
+                const errorMessage = <any>error;
+                console.error(errorMessage);
+                if (errorMessage != null) {
+                    this.status = 'error';
+                }
+            });
+    }
+
+    unFollowUser(followed) {
+        this._followService.deleteFollow(this.token, followed).subscribe(
+            response => {
+                const search = this.follows.indexOf(followed);
+                if (search !== -1) {
+                    this.follows.splice(search, 1);
+                    this.status = 'succes';
                 }
                 this.actualPage();
             },

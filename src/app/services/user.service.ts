@@ -66,7 +66,7 @@ export class UserService {
     }
 
     getCounter(userId = null): Observable<any> {
-        console.log('llamando a getCounter user.service');
+        // console.log('llamando a getCounter user.service');
         const headers = new HttpHeaders().set('Content-Type', 'application/json')
             .set('Authorization', this.getToken());
         // console.log('userid', userId);
