@@ -27,4 +27,17 @@ export class PublicationService {
             .set('Authorization', token);
         return this._http.post(this.url + 'publication', params, { headers });
     }
+
+    getPublication(token, page = 1): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json')
+            .set('Authorization', token);
+        return this._http.get(this.url + 'publications/' + page, { headers });
+    }
+
+    deletePublication(token, id): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json')
+            .set('Authorization', token);
+        return this._http.delete(this.url + 'publication/' + id, { headers });
+    }
+
 }

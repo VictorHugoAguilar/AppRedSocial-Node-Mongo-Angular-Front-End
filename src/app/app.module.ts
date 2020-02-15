@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RoutingModule, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import * as $ from 'jquery';
+import { MomentModule } from 'angular2-moment';
 
 // Importamos los componentes externos
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +19,7 @@ import { UsersComponent } from './components/users/users.component';
 import { SideBarComponent } from './components/sidebar/sidebar.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
+import { PublicationComponent } from './components/publication/publication.component';
 
 
 
@@ -30,14 +33,16 @@ import { NavBarComponent } from './components/navbar/navbar.component';
     UserEditComponent,
     UsersComponent,
     SideBarComponent,
-    TimelineComponent
+    TimelineComponent,
+    PublicationComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     RoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [
     appRoutingProviders

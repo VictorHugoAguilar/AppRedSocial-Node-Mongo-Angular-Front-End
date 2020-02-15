@@ -21,28 +21,24 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="stats" *ngIf='stats'>
-                    <div class="following-data">
-                        <a href="#">
-                            <span class="label-stats"> Siguiendo </span>
-                            <span class="number-stats-stats"> {{ stats.following }} </span>
-                        </a>
-                    </div>
-                    <div class="following-data">
-                        <a href="#">
-                            <span class="label-stats"> Seguidores </span>
-                            <span class="number-stats-stats"> {{ stats.followed }} </span>
-                        </a>
-                    </div>
-                    <div class="following-data">
-                        <a href="#">
-                            <span class="label-stats"> Publicaciones </span>
-                            <span class="number-stats-stats"> {{ stats.publications }} </span>
-                        </a>
-                    </div>
-                </div>
+        <div class="row stats  d-flex justify-content-between" *ngIf='stats'>
+            <div class="col-4 following-data">
+                <a href="#">
+                    <span class="label-stats"> Siguiendo </span>
+                    <span class="number-stats-stats"> {{ stats.following }} </span>
+                </a>
+            </div>
+            <div class="col-4 following-data">
+                <a href="#">
+                    <span class="label-stats"> Seguidores </span>
+                    <span class="number-stats-stats"> {{ stats.followed }} </span>
+                </a>
+            </div>
+            <div class="col-4 following-data">
+                <a href="#">
+                    <span class="label-stats"> Publicaciones </span>
+                    <span class="number-stats-stats"> {{ stats.publications }} </span>
+                </a>
             </div>
         </div>
     </div>
@@ -55,7 +51,7 @@
         <div class="alert alert-success" *ngIf="status === 'success'">El mensaje se ha publicado correctamente</div>
         <div class="alert alert-danger" *ngIf="status === 'error'">El mensaje no se ha publicado correctamente</div>
     </div>
-    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)" class="col-12">
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication($event)" class="col-12">
         <div class="form-group">
             <label>¿Qué estas pensando hoy?</label>
             <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required>

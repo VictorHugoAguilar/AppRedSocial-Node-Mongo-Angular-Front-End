@@ -2,9 +2,6 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as $ from 'jquery';
 
-import { faPlusCircle, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
-
-
 // Importamos el modelo de publication
 import { Publication } from '../../models/publication.model';
 
@@ -16,13 +13,13 @@ import { UserService } from '../../services/user.service';
 import { PublicationService } from 'src/app/services/publication.service';
 
 @Component({
-    selector: 'timeline',
-    styleUrls: ['./timeline.component.css'],
-    templateUrl: './timeline.component.html',
+    selector: 'publication',
+    styleUrls: ['./publication.component.css'],
+    templateUrl: './publication.component.html',
     providers: [UserService, PublicationService]
 
 })
-export class TimelineComponent implements OnInit, DoCheck {
+export class PublicationComponent implements OnInit, DoCheck {
 
     public identity;
     public token;
@@ -35,8 +32,6 @@ export class TimelineComponent implements OnInit, DoCheck {
     public pages;
     public itemPerPage;
     public noMore = false;
-    public faPlusCircle = faPlusCircle;
-    public faArrowAltCircleDown = faArrowAltCircleDown;
 
 
     constructor(
@@ -52,12 +47,11 @@ export class TimelineComponent implements OnInit, DoCheck {
     }
 
     ngOnInit() {
-        console.log('*** desde el componente timeline');
+        console.log('*** desde el componente publication');
         this.getPublication(this.page);
     }
 
     ngDoCheck(): void {
-
     }
 
     getPublication(page, adding = false) {
@@ -80,7 +74,7 @@ export class TimelineComponent implements OnInit, DoCheck {
                         $('html, body').animate({
                             scrollTop:
                                 $('body').prop('scrollHeight')
-                        }, 2000);
+                        }, 1000);
                     }
                     if (page > this.pages) {
                         // this._router.navigate(['/home']);
@@ -108,11 +102,6 @@ export class TimelineComponent implements OnInit, DoCheck {
         }
 
         this.getPublication(this.page, true);
-    }
-
-    refresh(event) {
-        // console.log('desde timeline', event);
-        this.getPublication(1);
     }
 
 }
