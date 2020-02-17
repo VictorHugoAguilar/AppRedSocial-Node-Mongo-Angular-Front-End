@@ -35,6 +35,9 @@ export class UserEditComponent implements OnInit {
     public faExclamationCircle = faExclamationCircle;
     public url;
 
+    public fileToUpload: Array<File>;
+
+
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
@@ -101,7 +104,6 @@ export class UserEditComponent implements OnInit {
     }
 
 
-    public fileToUpload: Array<File>;
     fileChangeEvent(fileInput: any) {
         this.fileToUpload = <Array<File>>fileInput.target.files;
         console.log(this.fileToUpload);

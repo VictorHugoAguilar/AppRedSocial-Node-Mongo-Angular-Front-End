@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as $ from 'jquery';
 
-import { faPlusCircle, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faArrowAltCircleDown, faImage, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 
 // Importamos el modelo de publication
@@ -37,7 +37,9 @@ export class TimelineComponent implements OnInit, DoCheck {
     public noMore = false;
     public faPlusCircle = faPlusCircle;
     public faArrowAltCircleDown = faArrowAltCircleDown;
-
+    public faImage = faImage;
+    public faWindowClose = faWindowClose;
+    public showImage;
 
     constructor(
         private _route: ActivatedRoute,
@@ -64,7 +66,7 @@ export class TimelineComponent implements OnInit, DoCheck {
         this._publicationService.getPublication(this.token, page).subscribe(
             response => {
                 if (response.publication) {
-                    console.log(response);
+                    // console.log(response);
                     this.total = response.total;
                     this.pages = response.pages;
                     this.itemPerPage = response.itemPerPage;
@@ -101,18 +103,24 @@ export class TimelineComponent implements OnInit, DoCheck {
 
 
     viewMore() {
-        if (this.publications.length === this.total) {
+        this.page += 1;
+        if (this.page === this.pages) {
             this.noMore = true;
-        } else {
-            this.page += 1;
         }
-
         this.getPublication(this.page, true);
     }
 
     refresh(event) {
         // console.log('desde timeline', event);
         this.getPublication(1);
+    }
+
+    showThisImage(id) {
+        this.showImage = id;
+    }
+
+    hideThisImage() {
+        this.showImage = 0;
     }
 
 }

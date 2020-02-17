@@ -1,0 +1,41 @@
+<div class="publications">
+    <h1 class="text-right">{{title}}</h1>
+    <hr>
+    <div *ngFor="let publication of publications" class="item-publication card mt-1 rounded-pill">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2 image-user">
+                    <img class="imagen-us" src="../../../assets/img/notImage.png" alt="publication.user.name" *ngIf="!publication.user.image">
+                    <img class="imagen-us" src="{{ url + 'getImage/' + publication.user.image }} " alt="publication.user.name " *ngIf="publication.user.image ">
+                </div>
+
+                <div class="col-10 ">
+                    <div class="text-secondary  text-right">
+                        {{ publication.user.name + ' ' + publication.user.surname}}
+                        <span class="date small text-black-50">
+                            &nbsp;| {{ (publication.createdAt | amFromUnix ) | amLocale:'es' | amTimeAgo }}
+                        </span>
+                    </div>
+                    <div class="publication-text  text-right ">
+                        <span class="">{{publication.text}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row d-flex justify-content-end mr-2" *ngIf="publications && publications.length; else noPublications">
+        <p class="mt-2">
+            <button class="btn btn-outline-secondary btn-sm" (click)="viewMore()" *ngIf="!noMore">
+                <fa-icon [icon]="faArrowAltCircleDown"></fa-icon>
+                Ver más publicaciones...
+            </button>
+        </p>
+    </div>
+    <ng-template #noPublications>
+        <div class="alert alert-info">
+            <fa-icon [icon]="faSurprise "></fa-icon>
+            El usuario no tiene publicaciones aún
+        </div>
+    </ng-template>
+</div>

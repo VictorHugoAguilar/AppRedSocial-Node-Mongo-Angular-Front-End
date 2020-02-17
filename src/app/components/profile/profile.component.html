@@ -1,0 +1,66 @@
+<div class="row mt-3">
+
+    <div class="col-12 col-lg-4">
+        <h1>{{title}}</h1>
+        <hr>
+        <div class="userProfile" *ngIf="user">
+            <div class="slide-container">
+                <div class="wrapper">
+                    <div class="clash-card barbarian">
+                        <div class="clash-card__image clash-card__image--barbarian">
+                            <img src="../../../assets/img/notImage.png" alt="user.name" *ngIf="!user.image">
+                            <img src="{{ url + 'getImage/' + user.image  }}" alt="user.name" *ngIf="user.image">
+                        </div>
+                        <div class="clash-card__level clash-card__level--barbarian">{{ user.name + ' ' + user.surname }}
+                        </div>
+                        <div class="clash-card__unit-name">{{ user.nick}}</div>
+                        <div class="clash-card__unit-description">
+                            {{user.email}}
+                        </div>
+                        <div class="">
+                            <div class="badge-dark p-2 d-flex justify-content-around">
+                                <button class="btn btn-sm btn-light text-black-50" *ngIf="followed">
+                                    Siguiendote
+                                </button>
+                                <button class="btn btn-sm btn-light text-black-50" *ngIf="!following" (click)="followUser(user._id)">
+                                    Seguir
+                                </button>
+                                <button class="btn btn-sm btn-success " *ngIf="following" (click)="unFollowUser(user._id)" (mouseover)="mouseEnter(user._id)" (mouseleave)="mouseLeave()" [class.btn-danger]="user._id === followUserOver">
+                                    <span *ngIf="user._id === followUserOver; else following">Dejar de Seguir</span>
+                                    <ng-template #following>Siguiendo</ng-template>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix ">
+                            <div class="one-third ">
+                                <div class="stat ">{{stats.following}}</div>
+                                <div class="stat-value ">Siguiendo</div>
+                            </div>
+
+                            <div class="one-third ">
+                                <div class="stat ">{{stats.followed}}</div>
+                                <div class="stat-value ">Seguidores</div>
+                            </div>
+
+                            <div class="one-third no-border ">
+                                <div class="stat ">{{stats.publications}}</div>
+                                <div class="stat-value ">Publicaciones</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end clash-card barbarian-->
+                </div>
+                <!-- end wrapper -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <publication *ngIf="user" [user]="user._id "> </publication>
+    </div>
+
+    <div class="col-12 col-lg-4 ">
+        <sidebar (sended)="refresh($event) "></sidebar>
+    </div>
+
+</div>

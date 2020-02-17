@@ -18,8 +18,9 @@
 }
 
 #user-card .name-surname .name {
+    text-decoration: none;
     font-weight: bold;
-    color: #343a40;
+    color: #ffc107;
     font-size: 17px;
 }
 

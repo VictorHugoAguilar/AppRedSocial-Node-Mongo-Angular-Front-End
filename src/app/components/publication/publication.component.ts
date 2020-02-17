@@ -1,6 +1,9 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as $ from 'jquery';
+
+import {  faSurprise, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
+
 
 // Importamos el modelo de publication
 import { Publication } from '../../models/publication.model';
@@ -10,7 +13,7 @@ import { environment } from '../../../environments/environment';
 
 // Importamos los servicios
 import { UserService } from '../../services/user.service';
-import { PublicationService } from 'src/app/services/publication.service';
+import { PublicationService,  } from 'src/app/services/publication.service';
 
 @Component({
     selector: 'publication',
@@ -21,18 +24,20 @@ import { PublicationService } from 'src/app/services/publication.service';
 })
 export class PublicationComponent implements OnInit, DoCheck {
 
+    public faSurprise = faSurprise;
+    public faArrowAltCircleDown = faArrowAltCircleDown;
     public identity;
     public token;
     public title: string;
     public url: string;
     public status: string;
-    public page: number = 1;
+    public page: number;
     public publications: Publication[];
     public total;
     public pages;
     public itemPerPage;
-    public noMore = false;
-
+    public noMore;
+    @Input() user: string;
 
     constructor(
         private _route: ActivatedRoute,
@@ -42,23 +47,25 @@ export class PublicationComponent implements OnInit, DoCheck {
     ) {
         this.identity = _userService.getIdentity();
         this.token = _userService.getToken();
-        this.title = 'TimeLine';
+        this.title = 'Publicaciones';
         this.url = environment.url;
+        this.page = 1;
+        this.noMore = false;
     }
 
     ngOnInit() {
-        console.log('*** desde el componente publication');
-        this.getPublication(this.page);
+        console.log('*** desde el componente publication ***');
+        this.getPublication(this.user, this.page);
     }
 
     ngDoCheck(): void {
     }
 
-    getPublication(page, adding = false) {
-        this._publicationService.getPublication(this.token, page).subscribe(
+    getPublication(user, page, adding = false) {
+        this._publicationService.getPublicationsUser(this.token, user, page).subscribe(
             response => {
                 if (response.publication) {
-                    console.log(response);
+                    // console.log(response);
                     this.total = response.total;
                     this.pages = response.pages;
                     this.itemPerPage = response.itemPerPage;
@@ -73,7 +80,7 @@ export class PublicationComponent implements OnInit, DoCheck {
 
                         $('html, body').animate({
                             scrollTop:
-                                $('body').prop('scrollHeight')
+                                $('html').prop('scrollHeight')
                         }, 1000);
                     }
                     if (page > this.pages) {
@@ -93,15 +100,12 @@ export class PublicationComponent implements OnInit, DoCheck {
         );
     }
 
-
     viewMore() {
-        if (this.publications.length === this.total) {
+        this.page += 1;
+        if (this.page === this.pages) {
             this.noMore = true;
-        } else {
-            this.page += 1;
         }
-
-        this.getPublication(this.page, true);
+        this.getPublication(this.user, this.page, true);
     }
 
 }

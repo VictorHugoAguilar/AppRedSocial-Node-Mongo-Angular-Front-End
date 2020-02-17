@@ -6,4 +6,12 @@
     border-radius: 100px;
 }
 
-.publications {}
+.user-name {
+    text-decoration: none;
+    color: goldenrod;
+}
+
+.user-name:hover {
+    text-decoration: none;
+    color: goldenrod;
+}

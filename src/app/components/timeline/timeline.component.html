@@ -13,7 +13,7 @@
         </div>
         <hr>
         <div class="publications">
-            <div *ngFor="let publication of publications" class="item-publication card mt-1 rounded-pill">
+            <div *ngFor="let publication of publications" class="item-publication card mt-2 rounded">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-2 image-user">
@@ -21,9 +21,9 @@
                             <img class="imagen-us" src="{{ url + 'getImage/' + publication.user.image }} " alt="publication.user.name " *ngIf="publication.user.image ">
                         </div>
                         <div class="clearfix"></div>
-                        <div class="col-6 ">
+                        <div class="col-8 ml-2">
                             <div class="text-secondary">
-                                {{ publication.user.name + ' ' + publication.user.surname}}
+                                <a [routerLink]="['/perfil/, publication.user._id']" class="user-name">{{ publication.user.name + ' ' + publication.user.surname}}</a>
                                 <span class="date small text-black-50">
                                     &nbsp;| {{ (publication.createdAt | amFromUnix ) | amLocale:'es' | amTimeAgo }}
                                 </span>
@@ -32,12 +32,24 @@
                                 <span class="">{{publication.text}}</span>
                             </div>
                         </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12" *ngIf="publication.file !== 'null'">
+                            <button class="btn btn-warning float-right" *ngIf="showImage !== publication._id" (click)="showThisImage(publication._id)">
+                            <span><fa-icon [icon]="faImage"></fa-icon></span>
+                            </button>
+                            <button class="btn btn-danger float-right" *ngIf="showImage === publication._id" (click)="hideThisImage(publication._id)">
+                                <span><fa-icon [icon]="faWindowClose"></fa-icon></span>
+                                </button>
+                        </div>
+                        <div class="col-lg-12 mt-1" *ngIf="publication.file !== 'null' && showImage === publication._id">
+                            <img src="{{ url + 'getImagePub/' + publication.file }}" class="col-lg-12">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="row d-flex justify-content-end mr-2">
+        <div class="row d-flex justify-content-end mr-2" *ngIf="publications && publications.length">
             <p class="mt-2">
                 <button class="btn btn-outline-secondary btn-sm" (click)="viewMore()" *ngIf="!noMore">
                     <fa-icon [icon]="faArrowAltCircleDown"></fa-icon>

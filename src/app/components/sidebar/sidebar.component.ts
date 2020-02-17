@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 // Importamos los servicios
 import { UserService } from '../../services/user.service';
 import { PublicationService } from '../../services/publication.service';
+import { UploadService } from '../../services/upload.service';
 
 // Importamos el modelo de publicaciones
 import { Publication } from '../../models/publication.model';
@@ -12,11 +13,13 @@ import { Publication } from '../../models/publication.model';
 import { environment } from '../../../environments/environment';
 
 
+
+
 @Component({
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
-    providers: [UserService, PublicationService]
+    providers: [UserService, PublicationService, UploadService]
 })
 export class SideBarComponent implements OnInit {
 
@@ -26,6 +29,7 @@ export class SideBarComponent implements OnInit {
     public stats;
     public url;
     public status;
+    public filesToUpload: Array<File>;
 
 
     constructor(
@@ -33,6 +37,7 @@ export class SideBarComponent implements OnInit {
         private _publicationService: PublicationService,
         private _route: ActivatedRoute,
         private _router: Router,
+        private _uploadService: UploadService
     ) {
         this.url = environment.url;
         this.identity = this._userService.getIdentity();
@@ -42,17 +47,32 @@ export class SideBarComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('*** desde el componente sidebar ****');
+        console.log('*** desde el componente sidebar ***');
     }
 
     onSubmit(form) {
-        console.log(this.publication);
+        // console.log(this.publication);
         this._publicationService.addPublication(this.token, this.publication).subscribe(
             response => {
                 if (response.publication) {
-                    this.status = 'success';
-                    form.reset();
-                    this._router.navigate(['/timeline']);
+                    //Subir la imagen
+                    this._uploadService
+                    .makeFileRequest(this.url + 'uploadImagePub/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
+                    .then((result: any) => {
+                            this.status = 'success';
+                            this.publication.file = result.image;
+                            form.reset();
+                            this._router.navigate(['/timeline']);
+                        })
+                        .catch(
+                            error => {
+                                const errorMessage = <any>error;
+                                console.error(errorMessage);
+                                if (errorMessage != null) {
+                                    this.status = 'error';
+                                }
+                            }
+                        );
                 }
             },
             error => {
@@ -65,10 +85,16 @@ export class SideBarComponent implements OnInit {
         );
     }
 
+    fileChangeEvent(fileInput: any) {
+        this.filesToUpload = <Array<File>>fileInput.target.files;
+        console.log(this.filesToUpload);
+    }
+
+
     // Output
     @Output() sended = new EventEmitter();
     sendPublication(event) {
-        console.log(event)
+        // console.log(event)
         this.sended.emit({ send: 'true' });
     }
 

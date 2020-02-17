@@ -6,7 +6,7 @@
         <div class="card-columns">
             <div *ngFor="let user of users" class="item-user">
                 <div class="card">
-                    <a href="#">
+                    <a [routerLink]="['/perfil/', user._id]">
                         <figure> <img class="img-fluid " src="../../../assets/img/notImage.png" alt="user.name" *ngIf="!user.image"></figure>
                         <figure><img class="img-fluid" src="{{ url + 'getImage/' + user.image  }}" alt="user.name" *ngIf="user.image"></figure>
                     </a>
