@@ -51,7 +51,7 @@
         <div class="alert alert-success" *ngIf="status === 'success'">El mensaje se ha publicado correctamente</div>
         <div class="alert alert-danger" *ngIf="status === 'error'">El mensaje no se ha publicado correctamente</div>
     </div>
-    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication($event)" class="col-12">
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)" class="col-12">
         <div class="form-group">
             <label>¿Qué estas pensando hoy?</label>
             <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required>

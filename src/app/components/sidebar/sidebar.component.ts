@@ -50,29 +50,37 @@ export class SideBarComponent implements OnInit {
         console.log('*** desde el componente sidebar ***');
     }
 
-    onSubmit(form) {
+    onSubmit(form, $event) {
         // console.log(this.publication);
         this._publicationService.addPublication(this.token, this.publication).subscribe(
             response => {
                 if (response.publication) {
-                    //Subir la imagen
-                    this._uploadService
-                    .makeFileRequest(this.url + 'uploadImagePub/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
-                    .then((result: any) => {
-                            this.status = 'success';
-                            this.publication.file = result.image;
-                            form.reset();
-                            this._router.navigate(['/timeline']);
-                        })
-                        .catch(
-                            error => {
-                                const errorMessage = <any>error;
-                                console.error(errorMessage);
-                                if (errorMessage != null) {
-                                    this.status = 'error';
+                    if (this.filesToUpload && this.filesToUpload.length) {
+                        //Subir la imagen
+                        this._uploadService
+                            .makeFileRequest(this.url + 'uploadImagePub/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
+                            .then((result: any) => {
+                                this.status = 'success';
+                                this.publication.file = result.image;
+                                form.reset();
+                                this._router.navigate(['/timeline']);
+                                this.sended.emit({ send: 'true' });
+                            })
+                            .catch(
+                                error => {
+                                    const errorMessage = <any>error;
+                                    console.error(errorMessage);
+                                    if (errorMessage != null) {
+                                        this.status = 'error';
+                                    }
                                 }
-                            }
-                        );
+                            );
+                    } else {
+                        this.status = 'success';
+                        form.reset();
+                        this._router.navigate(['/timeline']);
+                        this.sended.emit({ send: 'true' });
+                    }
                 }
             },
             error => {

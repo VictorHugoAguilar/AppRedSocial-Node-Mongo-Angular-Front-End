@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as $ from 'jquery';
 
-import { faPlusCircle, faArrowAltCircleDown, faImage, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faArrowAltCircleDown, faImage, faWindowClose, faTrashAlt, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 
 // Importamos el modelo de publication
@@ -39,6 +39,8 @@ export class TimelineComponent implements OnInit, DoCheck {
     public faArrowAltCircleDown = faArrowAltCircleDown;
     public faImage = faImage;
     public faWindowClose = faWindowClose;
+    public faTrash = faTrashAlt;
+    public faExclamationTriangle=faExclamationTriangle;
     public showImage;
 
     constructor(
@@ -110,7 +112,7 @@ export class TimelineComponent implements OnInit, DoCheck {
         this.getPublication(this.page, true);
     }
 
-    refresh(event) {
+    refresh(event = null) {
         // console.log('desde timeline', event);
         this.getPublication(1);
     }
@@ -121,6 +123,22 @@ export class TimelineComponent implements OnInit, DoCheck {
 
     hideThisImage() {
         this.showImage = 0;
+    }
+
+    deletePublication(id){
+        this._publicationService.deletePublication(this.token, id)
+            .subscribe(
+                response => {
+                    this.refresh();
+                },
+                error => {
+                    const errorMessage = <any>error;
+                    console.error(errorMessage);
+                    if (errorMessage != null) {
+                        this.status = 'error';
+                    }
+                }
+            );
     }
 
 }
