@@ -23,19 +23,19 @@
         </div>
         <div class="row stats  d-flex justify-content-between" *ngIf='stats'>
             <div class="col-4 following-data">
-                <a href="#">
+                <a [routerLink]="['/siguiendo', identity._id, 1]">
                     <span class="label-stats"> Siguiendo </span>
                     <span class="number-stats-stats"> {{ stats.following }} </span>
                 </a>
             </div>
             <div class="col-4 following-data">
-                <a href="#">
+                <a [routerLink]="['/seguidores', identity._id, 1]">
                     <span class="label-stats"> Seguidores </span>
                     <span class="number-stats-stats"> {{ stats.followed }} </span>
                 </a>
             </div>
             <div class="col-4 following-data">
-                <a href="#">
+                <a [routerLink]="['/perfil', identity._id]" class="name">
                     <span class="label-stats"> Publicaciones </span>
                     <span class="number-stats-stats"> {{ stats.publications }} </span>
                 </a>

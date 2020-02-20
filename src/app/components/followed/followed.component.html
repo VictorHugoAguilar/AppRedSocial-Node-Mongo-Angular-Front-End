@@ -1,0 +1,65 @@
+<div class="row mt-3">
+    <div class="col-8">
+        <h1>{{title}}</h1>
+        <hr>
+        <!-- LISTADO -->
+
+        <div class="card-columns" *ngIf="followed">
+            <div *ngFor="let follow of followed" class="item-user">
+                <div class="card">
+                    <a [routerLink]="['/perfil/', follow.user._id]">
+                        <img class="img-fluid" src="../../../assets/img/notImage.png" alt="follow.user.name" *ngIf="!follow.user.image">
+                        <img class="img-fluid" src="{{ url + 'getImage/' + follow.user.image  }}" alt="follow.user.name" *ngIf="follow.user.image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                            {{ follow.user.nick }}
+                        </h5>
+                        <p class="card-text">{{follow.user.name + ' ' + follow.user.surname }}</p>
+                        <p class="card-text text-center" *ngIf="follow.user._id != identity._id">
+                            <button class="btn btn-success btn-block" *ngIf="follows.indexOf(follow.user._id) < 0" (click)=followUser(follow.user._id)>
+                                <fa-icon [icon]="faPlusCircle"></fa-icon>
+                                Seguir
+                            </button>
+                            <button class="btn btn-primary btn-block" *ngIf="follows.indexOf(follow.user._id) >= 0" (click)=unFollowUser(follow.user._id) (mouseenter)="mouseEnter(follow.user._id)" (mouseleave)="mouseLeave(follow.user._id)" [class.btn-danger]="follow.user._id === followUserOver">
+                                <span *ngIf="follow.user._id === followUserOver; else following">
+                                    <fa-icon [icon]="faTimesCircle"></fa-icon>
+                                    Dejar de Seguir
+                                </span>
+
+                                <ng-template #following>
+                                    <fa-icon [icon]="faCheckCircle"></fa-icon>
+                                    Siguiendo
+                                </ng-template>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINACION  -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" *ngIf="page > 1">
+                            <a class="page-link" [routerLink]="['/seguidores', userPageId, backPage]" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item" *ngIf="pages != page">
+                            <a class="page-link" [routerLink]="['/seguidores', userPageId,  nextPage]">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SideBar -->
+    <div class="col-4">
+        <sidebar></sidebar>
+    </div>
+
+</div>

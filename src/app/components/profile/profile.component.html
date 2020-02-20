@@ -33,18 +33,24 @@
                         </div>
                         <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix ">
                             <div class="one-third ">
-                                <div class="stat ">{{stats.following}}</div>
-                                <div class="stat-value ">Siguiendo</div>
+                                <a class="noLinkA" [routerLink]="['/siguiendo', user._id, 1]">
+                                    <div class="stat ">{{stats.following}}</div>
+                                    <div class="stat-value ">Siguiendo</div>
+                                </a>
                             </div>
 
                             <div class="one-third ">
-                                <div class="stat ">{{stats.followed}}</div>
-                                <div class="stat-value ">Seguidores</div>
+                                <a class="noLinkA" [routerLink]="['/siguiendo', user._id, 1]">
+                                    <div class="stat ">{{stats.followed}}</div>
+                                    <div class="stat-value ">Seguidores</div>
+                                </a>
                             </div>
 
                             <div class="one-third no-border ">
-                                <div class="stat ">{{stats.publications}}</div>
-                                <div class="stat-value ">Publicaciones</div>
+                                <a class="noLinkA" [routerLink]="['/perfil', identity._id]">
+                                    <div class="stat ">{{stats.publications}}</div>
+                                    <div class="stat-value ">Publicaciones</div>
+                                </a>
                             </div>
                         </div>
                     </div>

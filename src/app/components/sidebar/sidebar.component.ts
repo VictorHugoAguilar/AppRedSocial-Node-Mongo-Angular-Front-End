@@ -58,7 +58,8 @@ export class SideBarComponent implements OnInit {
                     if (this.filesToUpload && this.filesToUpload.length) {
                         //Subir la imagen
                         this._uploadService
-                            .makeFileRequest(this.url + 'uploadImagePub/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
+                            .makeFileRequest(this.url + 'uploadImagePub/' + response.publication._id, [],
+                                this.filesToUpload, this.token, 'image')
                             .then((result: any) => {
                                 this.status = 'success';
                                 this.publication.file = result.image;

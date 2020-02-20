@@ -59,6 +59,16 @@ body {
     }
 }
 
+.noLinkA {
+    text-decoration: none !important;
+    color: gainsboro !important;
+}
+
+.noLinkA:hover {
+    text-decoration: none !important;
+    color: grey !important;
+}
+
 .clash-card__level {
     text-transform: uppercase;
     font-size: 12px;

@@ -21,6 +21,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
 import { PublicationComponent } from './components/publication/publication.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FollowingComponent } from './components/following/following.component';
+import { FollowedComponent } from './components/followed/followed.component';
 
 
 
@@ -36,6 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     SideBarComponent,
     TimelineComponent,
     PublicationComponent,
+    FollowingComponent,
+    FollowedComponent,
     ProfileComponent
   ],
   imports: [
