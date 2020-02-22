@@ -20,6 +20,11 @@
                         <fa-icon [icon]="faUsers"></fa-icon>
                     </span> Gente</a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" [routerLink]="['/mensajes']" routerLinkActive="active"><span>
+                        <fa-icon [icon]="faEnvelope"></fa-icon>
+                    </span> Mensajes</a>
+            </li>
         </ul>
 
         <ul class="navbar-nav mr-auto" *ngIf=" !identity ">

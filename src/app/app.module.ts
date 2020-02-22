@@ -24,6 +24,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 
+// Importamos el nuevo modulo de mensajes
+import { MessageModule } from './components/mensajes/message.module';
+
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { FollowedComponent } from './components/followed/followed.component';
     PublicationComponent,
     FollowingComponent,
     FollowedComponent,
-    ProfileComponent
+    ProfileComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { FollowedComponent } from './components/followed/followed.component';
     RoutingModule,
     FormsModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MessageModule
+    
   ],
   providers: [
     appRoutingProviders

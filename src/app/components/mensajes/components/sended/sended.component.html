@@ -1,0 +1,49 @@
+<div class="col-lg-10">
+
+    <h3 class="text-right">{{title}}</h3>
+    <hr>
+    <!-- Formulario envio mensajes -->
+    <div *ngIf="messages">
+        <!-- LISTADO -->
+        <div *ngFor="let message of messages" class="item-publication card mt-1 rounded-pill">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2 image-user">
+                        <img class="imagen-us" src="../../../assets/img/notImage.png" alt="message.receiver.name" *ngIf="!message.receiver.image">
+                        <img class="imagen-us" src="{{ url + 'getImage/' + message.receiver.image }} " alt="message.receiver.name " *ngIf="message.receiver.image">
+                    </div>
+                    <div class="col-10 ">
+                        <div class="text-secondary  text-right">
+                            {{ message.receiver.name + ' ' + message.receiver.surname}}
+                            <span class="date small text-black-50">
+                                &nbsp;| {{ (message.created_at | amFromUnix ) | amLocale:'es' | amTimeAgo }}
+                            </span>
+                        </div>
+                        <div class="publication-text  text-right ">
+                            <span class="">{{message.text}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix mt-2"></div>
+        <!-- PAGINACION  -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item mr-2" *ngIf="page > 1">
+                            <a class="page-link" [routerLink]="['/mensajes/enviados', backPage]" tabindex="-1">
+                                << Anterior </a>
+                        </li>
+                        <li class="page-item" *ngIf="pages != page">
+                            <a class="page-link" [routerLink]="['/mensajes/enviados', nextPage]">Siguiente >> </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>

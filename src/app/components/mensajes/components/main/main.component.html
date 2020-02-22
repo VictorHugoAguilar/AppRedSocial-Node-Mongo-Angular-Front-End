@@ -1,0 +1,21 @@
+<div class="row mt-4">
+    <div class="col-4">
+        <h3>{{title}}</h3>
+        <hr>
+
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+            <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-home" [routerLink]="['enviar']" routerLinkActive="active">Enviar Mensaje</a>
+            <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-home" [routerLink]="['recibidos']" routerLinkActive="active">Mensajes Recibidos</a>
+            <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-home" [routerLink]="['enviados']" routerLinkActive="active">Mensajes Enviados</a>
+            <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-home" [routerLink]="['/home']" routerLinkActive="active">Información</a>
+
+        </div>
+    </div>
+
+    <div class="col-8">
+        <div class="tab-content" id="v-pills-tabContent">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

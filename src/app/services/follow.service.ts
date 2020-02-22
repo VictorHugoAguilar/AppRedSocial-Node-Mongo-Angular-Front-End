@@ -61,4 +61,26 @@ export class FollowService {
 
         return this._http.get(url, { headers });
     }
+
+
+    getMyFollows(token): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json')
+            .set('Authorization', token);
+        return this._http.get(this.url + 'follows/' + true, { headers });
+
+    }
+
 }
+
+
+/*
+RUTAS APIS
+
+api.get('checkFollow', FollowController.checkFollow);
+api.post('/follow', mda.authentification, FollowController.saveFollow);
+api.delete('/follow/:id', mda.authentification, FollowController.deleteFollow);
+api.get('/following/:id?/:page?', mda.authentification, FollowController.getFollowingUser);
+api.get('/followed/:id?/:page?', mda.authentification, FollowController.getFollowedUsers);
+api.get('/follows/:followed?', mda.authentification, FollowController.getFollowBacks);
+
+*/

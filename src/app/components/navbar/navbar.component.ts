@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 // Importamos los servicios
 // Importamos los iconos desde fortawesome
-import { faHome, faList, faUsers, faSignInAlt, faSignOutAlt, faEdit, faCaretDown, faUser, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faList, faUsers, faSignInAlt, faSignOutAlt, faEdit, faCaretDown, faUser, faCog, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../../environments/environment';
 
@@ -26,6 +26,7 @@ export class NavBarComponent implements OnInit {
     public faCaretDown = faCaretDown;
     public faUser = faUser;
     public faCog = faCog;
+    public faEnvelope  = faEnvelope;
 
     constructor(
         private _userService: UserService,
