@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('desde el controlador de register');
+        // console.log('desde el controlador de register');
     }
 
     onSubmit(registerForm) {

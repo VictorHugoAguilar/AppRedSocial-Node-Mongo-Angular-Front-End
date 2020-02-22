@@ -47,7 +47,7 @@ export class SideBarComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('*** desde el componente sidebar ***');
+        // console.log('*** desde el componente sidebar ***');
     }
 
     onSubmit(form, $event) {
@@ -96,9 +96,8 @@ export class SideBarComponent implements OnInit {
 
     fileChangeEvent(fileInput: any) {
         this.filesToUpload = <Array<File>>fileInput.target.files;
-        console.log(this.filesToUpload);
+        // console.log(this.filesToUpload);
     }
-
 
     // Output
     @Output() sended = new EventEmitter();
@@ -106,10 +105,6 @@ export class SideBarComponent implements OnInit {
         // console.log(event)
         this.sended.emit({ send: 'true' });
     }
-
-
-
-
 
 }
 

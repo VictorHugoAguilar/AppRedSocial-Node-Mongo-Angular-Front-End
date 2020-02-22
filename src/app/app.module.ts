@@ -26,6 +26,8 @@ import { FollowedComponent } from './components/followed/followed.component';
 
 // Importamos el nuevo modulo de mensajes
 import { MessageModule } from './components/mensajes/message.module';
+import { UserGuard } from './services/user.guard';
+import { UserService } from './services/user.service';
 
 
 
@@ -57,7 +59,9 @@ import { MessageModule } from './components/mensajes/message.module';
     
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    UserService,
+    UserGuard
   ],
   bootstrap: [AppComponent]
 })

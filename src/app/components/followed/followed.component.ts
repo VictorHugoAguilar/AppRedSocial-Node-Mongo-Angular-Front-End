@@ -1,7 +1,9 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+// MODELOS
 import { User } from '../../models/user.model';
+import { Follow } from '../../models/follow.model';
 
 // Importamos los servicios
 import { UserService } from '../../services/user.service';
@@ -11,8 +13,9 @@ import { FollowService } from '../../services/follow.service';
 import { environment } from '../../../environments/environment';
 
 // Importamos los iconos
-import { faPlusCircle, faTimesCircle, faUser, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { Follow } from '../../models/follow.model';
+import { faPlusCircle, faTimesCircle, faUser, faCheckCircle 
+} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
     // tslint:disable-next-line: component-selector
@@ -21,7 +24,6 @@ import { Follow } from '../../models/follow.model';
     providers: [UserService, FollowService]
 })
 export class FollowedComponent implements OnInit {
-
     public title: string;
     public url: string;
     public identity;
@@ -58,7 +60,7 @@ export class FollowedComponent implements OnInit {
 
 
     ngOnInit() {
-        console.log('Desde el componente de users');
+        // console.log('Desde el componente de users');
         this.actualPage();
     }
 
@@ -94,10 +96,8 @@ export class FollowedComponent implements OnInit {
                 if (!response.follows) {
                     this.status = 'error';
                 } else {
-                    console.log(response);
                     this.total = response.total;
                     this.followed = response.follows;
-                    console.log(this.followed)
                     this.pages = response.pages;
                     this.follows = response.usersFollowing;
                     if (page > this.pages) {

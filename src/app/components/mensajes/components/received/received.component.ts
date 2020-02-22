@@ -58,7 +58,7 @@ export class ReceivedComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('*** desde component sended ***');
+        // console.log('*** desde component sended ***');
         this.actualPage();
     }
 
@@ -88,9 +88,8 @@ export class ReceivedComponent implements OnInit {
     getMessages(token, page) {
         this._messageService.getMyMessages(token, page).subscribe(
             response => {
-                console.log(response);
+                // console.log(response);
                 if (response.OK) {
-                    console.log('dentro del if ', response.OK);
                     this.messages = response.messages;
                     this.pages = response.pages;
                     this.total = response.total;
@@ -103,7 +102,7 @@ export class ReceivedComponent implements OnInit {
                     this.status = 'error';
                 }
             }
-        )
+        );
     }
 
 }

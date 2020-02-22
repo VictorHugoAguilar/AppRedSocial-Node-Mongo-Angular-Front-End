@@ -2,8 +2,10 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as $ from 'jquery';
 
-import { faPlusCircle, faArrowAltCircleDown, faImage, faWindowClose, faTrashAlt, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-
+// Iconos
+import { faPlusCircle, faArrowAltCircleDown, faImage, faWindowClose, 
+    faTrashAlt, faExclamationTriangle 
+} from '@fortawesome/free-solid-svg-icons';
 
 // Importamos el modelo de publication
 import { Publication } from '../../models/publication.model';
@@ -56,7 +58,7 @@ export class TimelineComponent implements OnInit, DoCheck {
     }
 
     ngOnInit() {
-        console.log('*** desde el componente timeline');
+        // console.log('*** desde el componente timeline');
         this.getPublication(this.page);
     }
 

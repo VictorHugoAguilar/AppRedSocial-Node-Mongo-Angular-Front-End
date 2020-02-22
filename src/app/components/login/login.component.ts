@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('Login Component');
+        // console.log('Login Component');
     }
 
     onSubmit() {
@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
     getCounter() {
         this._userService.getCounter().subscribe(
             response => {
-                console.log(response);
+                // console.log(response);
                 if (response) {
                     localStorage.setItem('stats', JSON.stringify(response));
                     this.status = 'success';
@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit {
             },
             error => {
                 const errorMensaje = <any>error;
-                console.log(errorMensaje);
+                console.error(errorMensaje);
                 if (errorMensaje) {
                     this.status = 'error';
                 }

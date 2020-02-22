@@ -4,18 +4,14 @@ import { Router, Routes, ActivatedRoute } from '@angular/router';
 
 // Modelos
 import { Message } from '../../../../models/message.public';
-import { Follow } from '../../../../models/follow.model';
 
 // Servicios
 import { FollowService } from '../../../../services/follow.service';
 import { MessageService } from '../../../../services/message.service';
 import { UserService } from '../../../../services/user.service';
 
-import {
-    faHome, faList, faUsers, faSignInAlt, faSignOutAlt,
-    faEdit, faCaretDown, faUser, faCog, faEnvelope
-} from '@fortawesome/free-solid-svg-icons';
-
+// Importamos los iconos
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'sended',
@@ -35,9 +31,7 @@ export class SendedComponent implements OnInit {
     public page;
     public total: number;
     public pages: number;
-
     public faUser = faUser;
-
     public userPageId;
     public nextPage;
     public backPage;
@@ -58,7 +52,7 @@ export class SendedComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('*** desde component sended ***');
+        // console.log('*** desde component sended ***');
         this.actualPage();
     }
 
@@ -85,13 +79,12 @@ export class SendedComponent implements OnInit {
         });
     }
 
-    getMessages(token, page=1) {
-        console.log('obtener mas',page)
+    getMessages(token, page = 1) {
+        // console.log('obtener mas',page)
         this._messageService.getEmmitMessages(token, page).subscribe(
             response => {
-                console.log(response);
+                // console.log(response);
                 if (response.OK) {
-                    console.log('dentro del if ', response.OK);
                     this.messages = response.messages;
                     this.pages = response.pages;
                     this.total = response.total;
@@ -104,7 +97,7 @@ export class SendedComponent implements OnInit {
                     this.status = 'error';
                 }
             }
-        )
+        );
     }
 
 }

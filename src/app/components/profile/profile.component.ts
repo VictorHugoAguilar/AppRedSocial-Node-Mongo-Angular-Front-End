@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('*** desde el profile ***');
+        // console.log('*** desde el profile ***');
         this.loadPage();
     }
 

@@ -5,18 +5,18 @@ import { environment } from '../../../environments/environment';
 
 // Importamos los modelos
 import { User } from '../../models/user.model';
-import { Message } from '../../models/message.public';
 
 // importamos los servicios
 import { UserService } from '../../services/user.service';
 import { UploadService } from '../../services/upload.service';
 
 // importamos los iconos necestarios
-import { faExclamationTriangle, faExclamationCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+    faExclamationTriangle, faExclamationCircle, faCheckCircle
+} from '@fortawesome/free-solid-svg-icons';
 
 // importamos sweetAlert
 import Swal from 'sweetalert2';
-
 
 @Component({
     selector: 'user-edit',
@@ -70,7 +70,7 @@ export class UserEditComponent implements OnInit {
 
                     // subida de imagen
                     this._uploadService
-                    .makeFileRequest(this.url + 'uploadImage/' + this.user._id, [], this.fileToUpload, this.token, 'image')
+                        .makeFileRequest(this.url + 'uploadImage/' + this.user._id, [], this.fileToUpload, this.token, 'image')
                         .then((result: any) => {
                             // console.log(result.userUpdate.image);
                             this.user.image = result.userUpdate.image;
@@ -78,7 +78,7 @@ export class UserEditComponent implements OnInit {
                         })
                         .catch(
                             (error: any) => {
-                                console.log(error);
+                                console.error(error);
                             }
                         );
 
@@ -103,13 +103,10 @@ export class UserEditComponent implements OnInit {
         );
     }
 
-
     fileChangeEvent(fileInput: any) {
         this.fileToUpload = <Array<File>>fileInput.target.files;
-        console.log(this.fileToUpload);
+        // console.log(this.fileToUpload);
     }
-
-
 }
 
 

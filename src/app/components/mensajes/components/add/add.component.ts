@@ -48,26 +48,24 @@ export class AddComponent implements OnInit {
         this.getMyFollows();
     }
 
-    onSubmit(form){
-        console.log(this.message);
+    onSubmit(form) {
+        // console.log(this.message);
         this._messageService.addMessage(this.token, this.message).subscribe(
             response => {
-                console.log(response)
-                if (response.messageStored){
+                // console.log(response)
+                if (response.messageStored) {
                     this.status = 'success';
                     form.reset();
-                }else{
+                } else {
                     this.status = 'error';
-
                 }
-                
             },
             error => {
                 const errorMensaje = <any>error;
-                    console.error(errorMensaje);
-                    if (errorMensaje) {
-                        this.status = 'error';
-                    }
+                console.error(errorMensaje);
+                if (errorMensaje) {
+                    this.status = 'error';
+                }
             }
         );
     }
@@ -76,8 +74,10 @@ export class AddComponent implements OnInit {
         this._followService.getMyFollows(this.token)
             .subscribe(
                 response => {
-                    console.log(response);
-                    this.follows = response.follows;
+                    // console.log(response.OK);
+                    if (response.OK) {
+                        this.follows = response.follows;
+                    }
                 }, error => {
                     const errorMensaje = <any>error;
                     console.error(errorMensaje);

@@ -3,8 +3,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 // Importamos los servicios
 // Importamos los iconos desde fortawesome
-import { faHome, faList, faUsers, faSignInAlt, faSignOutAlt, faEdit, faCaretDown, faUser, faCog, faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import {
+    faHome, faList, faUsers, faSignInAlt, faSignOutAlt,
+    faEdit, faCaretDown, faUser, faCog, faEnvelope
+} from '@fortawesome/free-solid-svg-icons';
+
+// Servicios
 import { UserService } from '../../services/user.service';
+
+// Variables de entorno
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -26,7 +33,7 @@ export class NavBarComponent implements OnInit {
     public faCaretDown = faCaretDown;
     public faUser = faUser;
     public faCog = faCog;
-    public faEnvelope  = faEnvelope;
+    public faEnvelope = faEnvelope;
 
     constructor(
         private _userService: UserService,
@@ -39,7 +46,7 @@ export class NavBarComponent implements OnInit {
 
     ngOnInit(): void {
         this.identity = this._userService.getIdentity();
-        console.log(this.identity);
+        // console.log(this.identity);
     }
 
     ngDoCheck(): void {
@@ -47,7 +54,7 @@ export class NavBarComponent implements OnInit {
     }
 
     logout(): void {
-        console.log('Saliendo de la app');
+        //console.log('Saliendo de la app');
         localStorage.clear();
         this.identity = null;
         this._router.navigate(['/']);

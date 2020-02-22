@@ -1,7 +1,9 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+// MODELO
 import { User } from '../../models/user.model';
+import { Follow } from '../../models/follow.model';
 
 // Importamos los servicios
 import { UserService } from '../../services/user.service';
@@ -11,8 +13,10 @@ import { FollowService } from '../../services/follow.service';
 import { environment } from '../../../environments/environment';
 
 // Importamos los iconos
-import { faPlusCircle, faTimesCircle, faUser, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { Follow } from '../../models/follow.model';
+import {
+    faPlusCircle, faTimesCircle,
+    faUser, faCheckCircle
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     // tslint:disable-next-line: component-selector
@@ -58,7 +62,7 @@ export class FollowingComponent implements OnInit {
 
 
     ngOnInit() {
-        console.log('Desde el componente de users');
+        // console.log('Desde el componente de users');
         this.actualPage();
     }
 
@@ -94,7 +98,6 @@ export class FollowingComponent implements OnInit {
                 if (!response.follows) {
                     this.status = 'error';
                 } else {
-                    console.log(response);
                     this.total = response.total;
                     this.following = response.follows;
                     this.pages = response.pages;

@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as $ from 'jquery';
 
-import {  faSurprise, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faSurprise, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Importamos el modelo de publication
@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 
 // Importamos los servicios
 import { UserService } from '../../services/user.service';
-import { PublicationService,  } from 'src/app/services/publication.service';
+import { PublicationService, } from 'src/app/services/publication.service';
 
 @Component({
     selector: 'publication',
@@ -54,7 +54,7 @@ export class PublicationComponent implements OnInit, DoCheck {
     }
 
     ngOnInit() {
-        console.log('*** desde el componente publication ***');
+        // console.log('*** desde el componente publication ***');
         this.getPublication(this.user, this.page);
     }
 
